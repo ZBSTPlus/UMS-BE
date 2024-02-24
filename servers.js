@@ -6,6 +6,7 @@ const Quiz = require("./Models/Quiz")
 const ClassRoom = require("./Models/ClassRooms")
 const studentRoutes = require("./Routers/Student")
 const cors = require('cors');
+const swagger = require('./swagger')
 
 require('dotenv').config()
 const app = express();
@@ -24,7 +25,7 @@ const uri = process.env.MONGO_URI
 mongoose.connect(uri)
   .then(() => {
     console.log("Connected to MongoDB");
-
+    swagger(app)
     app.listen(process.env.PORT, () => {
       console.log(`Server is running on port ${process.env.PORT}`);
     });
