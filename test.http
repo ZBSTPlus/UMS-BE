@@ -1,0 +1,17 @@
+POST http://localhost:4000/student/classrooms HTTP/1.1
+content-type: application/json
+
+{
+"courses": [
+      {
+        "cid": "1",
+        "cname": "Mathematics",
+        "_id": "65d8e0ecfc1011611ac2dd9f"
+      },
+      {
+        "cid": "3",
+        "cname": "DBMS",
+        "_id": "65d8e0ecfc1011611ac2dda0"
+      }
+      ]
+}
