@@ -16,10 +16,15 @@ const options = {
     ],
   },
   apis: ['./Routers/*.js'],
+
 }
 
 const specs = swaggerJsdoc(options)
 
+// CDN CSS
+const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+
 module.exports = (app) => {
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs,
+    { customCssUrl: CSS_URL }))
 }
