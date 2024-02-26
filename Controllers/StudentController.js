@@ -1,6 +1,6 @@
 
 const Student = require("../Models/Student")
-const Classrooms = require("../Models/ClassRooms")
+const Courses = require("../Models/Courses")
 const Practice = require("../Models/Practice")
 
 
@@ -20,8 +20,8 @@ const details = (req, res) => {
         });
 }
 
-const classrooms = (req, res) => {
-    Classrooms.find({})
+const courses = (req, res) => {
+    Courses.find({})
         .then((result) => {
             if (result) {
                 console.log(result);
@@ -102,4 +102,4 @@ const quiz = (req, res) => {
         });
 }
 
-module.exports = { details, classrooms, practice, quiz, post_details }
+module.exports = { details, courses, practice, quiz, post_details }
