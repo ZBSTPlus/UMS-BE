@@ -48,5 +48,4 @@ app.post("/insert", (req, res) => {
     })
 })
 
-//server
-//bjhdfhbdhvb
+
