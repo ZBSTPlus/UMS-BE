@@ -2,27 +2,27 @@ const mongoose=require("mongoose");
 
 const student = new mongoose.Schema(
   {
-     sid:{
+     studentId:{
        type:String,
        required:true
      },
-     sname:{
+     studentName:{
         type:String,
         required:true
      },
-     email:
+     studentEmail:
      {
       type:String,
       required:true
      },
      courses:[
       {
-        cid:
+        courseId:
         {
           type:String,
           required:true
         },
-        cname:{
+        courseName:{
           type:String,
           required:true
         }
