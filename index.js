@@ -47,3 +47,7 @@ app.post("/insert", (req, res) => {
       res.send(error);
     })
 })
+
+app.get("/", (req, res) => {
+  res.send({app:"UMS-BE",version:"0.0.1"})
+})
