@@ -36,4 +36,19 @@ router.get('/studentDetails',StudentController.details)
 router.post('/classrooms',StudentController.post_details)
 //router.get('/classrooms/practice?')
 
+
+router.get('/quiz/getquestions',StudentController.getQuizQuestions)
+
+
+router.post('/quiz/addquestions',StudentController.addQuizQuestions)
+
+
+
+router.get('/practice/getquestions',StudentController.getPracticeQuestions)
+
+
+
+router.post('/practice/addquestions',StudentController.addPracticeQuestions)
+
+
 module.exports=router

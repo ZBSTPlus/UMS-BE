@@ -102,4 +102,93 @@ const quiz = (req, res) => {
         });
 }
 
-module.exports = { details, courses, practice, quiz, post_details }
+
+
+
+const getQuizQuestions=async (req, res) => {
+    try {
+      const { courseTitle, topicTitle } = req.query;
+      // const { courseTitle, topicTitle } = req.query;
+      console.log(courseTitle,topicTitle);
+  
+      const quizzes = await quiz.find({ courseTitle, topicTitle });
+  
+      res.json(quizzes);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
+
+
+
+  const addQuizQuestions=async (req, res) => {
+    try {
+      const { courseTitle, topicTitle, questions } = req.body;
+  
+      const updatedQuiz = await quiz.findOneAndUpdate(
+        { courseTitle, topicTitle },
+        { $push: { questions: { $each: questions } } },
+        { upsert: true, new: true }
+      );
+  
+      res.json(updatedQuiz);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
+
+
+
+  const getPracticeQuestions=async (req, res) => {
+    try {
+      const { courseTitle, topicTitle } = req.query;
+      // const { courseTitle, topicTitle } = req.query;
+      console.log(courseTitle,topicTitle);
+  
+      const practices= await practice.find({ courseTitle, topicTitle });
+  
+      res.json(practices);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
+
+
+
+const addPracticeQuestions=async (req, res) => {
+    try {
+      const { courseTitle, topicTitle, questions } = req.body;
+  
+      const updatedPractice = await practice.findOneAndUpdate(
+        { courseTitle, topicTitle },
+        { $push: { questions: { $each: questions } } },
+        { upsert: true, new: true }
+      );
+  
+      res.json(updatedPractice);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+module.exports = { details, courses, practice, quiz, post_details ,getQuizQuestions,addQuizQuestions ,addPracticeQuestions,getPracticeQuestions}
