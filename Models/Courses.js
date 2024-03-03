@@ -2,11 +2,11 @@ const mongoose=require("mongoose");
 
 const courses = new mongoose.Schema(
   {
-    classId:{
+    courseId:{
         type:String,
         required:true
     },
-    classTitle:{
+    courseTitle:{
         type:String,
         required:true
     },

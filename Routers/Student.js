@@ -50,5 +50,7 @@ router.get('/practice/getquestions',StudentController.getPracticeQuestions)
 
 router.post('/practice/addquestions',StudentController.addPracticeQuestions)
 
+router.get('/assessment/:course',StudentController.getAssessment);
 
+router.post('/assessment/updateScore',StudentController.updateStudentScore);
 module.exports=router

@@ -2,7 +2,7 @@
 const Student = require("../Models/Student")
 const Courses = require("../Models/Courses")
 const Practice = require("../Models/Practice")
-
+const Assessment=require("../Models/Assessments")
 
 const details = (req, res) => {
     Student.find({})
@@ -178,6 +178,41 @@ const addPracticeQuestions=async (req, res) => {
     }
   }
 
+const getAssessment=async(req,res)=>{
+    try{
+    const courseName=req.params.course;
+    const data=await Assessment.find({courseName}).select('assessmentName questions').exec();
+    //console.log(data);
+    if(data.length===0){
+    return res.json({message:"can't find the assessment!"})
+    }
+    return res.json(data);
+    }
+    catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal server error' });
+      }
+}
+
+const updateStudentScore=async(req,res)=>{
+    try{
+    const {courseName,studentId,assessmentScore}=req.body;
+    const obj={studentId,assessmentScore};
+    const data=await Assessment.findOneAndUpdate(
+        {courseName,'scores.studentId': { $ne: studentId }},
+        { $addToSet: { scores: obj } },
+        { new: true }
+        )
+        if(data==null || data.length===0)
+        return res.json({message:"failed to update the score."})
+        return res.json(data);
+    }
+    catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal server error' });
+      }
+
+}
 
 
 
@@ -189,6 +224,16 @@ const addPracticeQuestions=async (req, res) => {
 
 
 
-
-
-module.exports = { details, courses, practice, quiz, post_details ,getQuizQuestions,addQuizQuestions ,addPracticeQuestions,getPracticeQuestions}
+module.exports = {
+    details, 
+    courses, 
+    practice, 
+    quiz, 
+    post_details ,
+    getQuizQuestions,
+    addQuizQuestions,
+    addPracticeQuestions,
+    getPracticeQuestions,
+    getAssessment,
+    updateStudentScore
+}
