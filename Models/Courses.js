@@ -6,7 +6,7 @@ const courses = new mongoose.Schema(
         type:String,
         required:true
     },
-    courseName:{
+    classTitle:{
         type:String,
         required:true
     },
