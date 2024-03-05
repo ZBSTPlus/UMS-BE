@@ -6,7 +6,8 @@ const Quiz = require("./Models/QuizQuestions")
 const ClassRoom = require("./Models/Courses")
 const studentRoutes = require("./Routers/Student")
 const cors = require('cors');
-const swagger = require('./swagger')
+const swagger = require('./swagger');
+const Courses = require('./Models/Courses');
 
 require('dotenv').config()
 const app = express();
@@ -38,7 +39,7 @@ mongoose.connect(uri)
 app.use("/student", studentRoutes);
 
 app.post("/insert", (req, res) => {
-  const data = new Student(req.body);
+  const data = new Courses(req.body);
   data.save().then((result) => {
     console.log("result:", result);
     res.send(result);
