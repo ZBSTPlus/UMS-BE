@@ -37,6 +37,40 @@ router.post('/classrooms',StudentController.post_details)
 //router.get('/classrooms/practice?')
 
 
+
+
+/**
+ * @openapi
+ * /quiz/getquestions:
+ *   get:
+ *     summary: Get quiz questions by courseTitle and topicTitle
+ *     description: Retrieve quiz questions based on the specified courseTitle and topicTitle.
+ *     parameters:
+ *       - in: query
+ *         name: courseTitle
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The title of the course for which to retrieve quiz questions.
+ *       - in: query
+ *         name: topicTitle
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The title of the topic for which to retrieve quiz questions.
+ *     responses:
+ *       '200':
+ *         description: A list of quiz questions matching the specified courseTitle and topicTitle.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/QuizObject'
+ *       '500':
+ *         description: Internal server error
+ */
+
 router.get('/quiz/getquestions',StudentController.getQuizQuestions)
 
 
