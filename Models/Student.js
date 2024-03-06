@@ -4,7 +4,8 @@ const student = new mongoose.Schema(
   {
      studentId:{
        type:String,
-       required:true
+       required:true,
+       unique: true
      },
      studentName:{
         type:String,
