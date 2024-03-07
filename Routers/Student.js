@@ -43,17 +43,17 @@ router.post('/classrooms',StudentController.post_details)
  * @openapi
  * /quiz/getquestions:
  *   get:
- *     summary: Get quiz questions by courseTitle and topicTitle
- *     description: Retrieve quiz questions based on the specified courseTitle and topicTitle.
+ *     summary: Get quiz questions by courseName and topicName
+ *     description: Retrieve quiz questions based on the specified courseName and topicName.
  *     parameters:
  *       - in: query
- *         name: courseTitle
+ *         name: courseName
  *         schema:
  *           type: string
  *         required: true
  *         description: The title of the course for which to retrieve quiz questions.
  *       - in: query
- *         name: topicTitle
+ *         name: topicName
  *         schema:
  *           type: string
  *         required: true

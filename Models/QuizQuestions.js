@@ -10,7 +10,7 @@ const mongoose=require("mongoose");
  *     QuizQuestion:
  *       type: object
  *       properties:
- *         qid:
+ *         qId:
  *           type: string
  *           example: "1"
  *         question:
@@ -27,10 +27,10 @@ const mongoose=require("mongoose");
  *     QuizObject:
  *       type: object
  *       properties:
- *         course_title:
+ *         courseName:
  *           type: string
  *           example: "mathematics"
- *         topic_title:
+ *         topicName:
  *           type: string
  *           example: "multiplication"
  *         questions:
