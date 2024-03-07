@@ -4,7 +4,7 @@ const StudentController=require("../Controllers/StudentController")
 
 /**
  * @openapi
- * /student/:studentId:
+ * /student/studentDetails:
  *   get:
  *     description: GET Student details!
  *     tags: [ Student ]
@@ -12,18 +12,8 @@ const StudentController=require("../Controllers/StudentController")
  *       200:
  *         description: Returns a mysterious string.
  */
-router.get('/:studentId',StudentController.details)
-/**
- * @openapi
- * /student/course/:courses:
- *   post:
- *     description: GET all Courses related to studentId!
- *     tags: [ courses ]
- *     responses:
- *       200:
- *         description: Returns a mysterious string.
- */
-router.get('/course/:courses',StudentController.getCourse)
+router.get('/studentDetails',StudentController.details)
+//router.get('/classrooms',StudentController.classrooms)
 
 /**
  * @openapi
@@ -43,7 +33,7 @@ router.get('/course/:courses',StudentController.getCourse)
  *       200:
  *         description: Returns a mysterious string.
  */
-
+router.post('/classrooms',StudentController.post_details)
 //router.get('/classrooms/practice?')
 
 
