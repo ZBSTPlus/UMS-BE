@@ -3,6 +3,7 @@ const Student = require("../Models/Student")
 const Courses = require("../Models/Courses")
 const Practice = require("../Models/Practice")
 const Assessment=require("../Models/Assessments")
+const Quiz = require('../Models/QuizQuestions')
 
 const details = (req, res) => {
     Student.find({})
@@ -36,21 +37,7 @@ const courses = (req, res) => {
         });
 }
 
-const practice = (req, res) => {
-    const id = req.params.id;
-    Practice.findOne({ tid: id })
-        .then((result) => {
-            if (result) {
-                res.status(200).send(result)
-            }
-            else {
-                res.status(500).send("can't find the doc");
-            }
-        })
-        .catch((error) => {
-            res.status(500).send(error);
-        });
-}
+
 
 const post_details = (req, res) => {
     let array = req.body;
@@ -86,32 +73,17 @@ const post_details = (req, res) => {
         });
 }
 
-const quiz = (req, res) => {
-    const id = req.params.id;
-    Practice.findOne({ tid: id })
-        .then((result) => {
-            if (result) {
-                res.status(200).send(result)
-            }
-            else {
-                res.status(500).send("can't find the doc");
-            }
-        })
-        .catch((error) => {
-            res.status(500).send(error);
-        });
-}
 
 
 
 
 const getQuizQuestions=async (req, res) => {
     try {
-      const { courseTitle, topicTitle } = req.query;
-      // const { courseTitle, topicTitle } = req.query;
-      console.log(courseTitle,topicTitle);
+      const { courseName, topicName } = req.query;
+      // const { courseName, topicName } = req.query;
+      console.log (courseName,topicName);
   
-      const quizzes = await quiz.find({ courseTitle, topicTitle });
+      const quizzes = await Quiz.find({ courseName, topicName });
   
       res.json(quizzes);
     } catch (err) {
@@ -125,10 +97,10 @@ const getQuizQuestions=async (req, res) => {
 
   const addQuizQuestions=async (req, res) => {
     try {
-      const { courseTitle, topicTitle, questions } = req.body;
+      const { courseName, topicName, questions } = req.body;
   
-      const updatedQuiz = await quiz.findOneAndUpdate(
-        { courseTitle, topicTitle },
+      const updatedQuiz = await Quiz.findOneAndUpdate(
+        { courseName, topicName },
         { $push: { questions: { $each: questions } } },
         { upsert: true, new: true }
       );
@@ -145,11 +117,11 @@ const getQuizQuestions=async (req, res) => {
 
   const getPracticeQuestions=async (req, res) => {
     try {
-      const { courseTitle, topicTitle } = req.query;
-      // const { courseTitle, topicTitle } = req.query;
-      console.log(courseTitle,topicTitle);
+      const { courseName, topicName } = req.query;
+      // const { courseName, topicName } = req.query;
+      console.log (courseName,topicName);
   
-      const practices= await practice.find({ courseTitle, topicTitle });
+      const practices= await Practice.find({ courseName, topicName });
   
       res.json(practices);
     } catch (err) {
@@ -163,10 +135,10 @@ const getQuizQuestions=async (req, res) => {
 
 const addPracticeQuestions=async (req, res) => {
     try {
-      const { courseTitle, topicTitle, questions } = req.body;
+      const { courseName, topicName, questions } = req.body;
   
-      const updatedPractice = await practice.findOneAndUpdate(
-        { courseTitle, topicTitle },
+      const updatedPractice = await Practice.findOneAndUpdate(
+        { courseName, topicName },
         { $push: { questions: { $each: questions } } },
         { upsert: true, new: true }
       );
@@ -226,9 +198,7 @@ const updateStudentScore=async(req,res)=>{
 
 module.exports = {
     details, 
-    courses, 
-    practice, 
-    quiz, 
+    courses,
     post_details ,
     getQuizQuestions,
     addQuizQuestions,

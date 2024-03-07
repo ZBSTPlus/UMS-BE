@@ -4,20 +4,20 @@ const Practice = new mongoose.Schema(
   {  courseId:{
         type:String
      },
-     courseTitle:{
+     courseName:{
       type:String,
       required:true
      },
      topicId:{
         type:String
      },
-     topicTitle:{
+     topicName:{
         type:String,
         required:true
      },
      questions:[
         {
-          qid:{
+          qId:{
              type:String
           },
           question:
